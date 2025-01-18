@@ -16,7 +16,7 @@ const PaymentSection = () => {
   const [isGuestModalVisible, setGuestModalVisible] = useState(false);
   const [adultCount, setAdultCount] = useState(1);
   const [childrenCount, setChildrenCount] = useState(0);
-  const { createReservation, updateReservation } = useReservationContext();
+  const { createReservation, updateReservation, User } = useReservationContext();
   const checkInRef = useRef(null);
   const checkOutRef = useRef(null);
 
@@ -231,7 +231,7 @@ const PaymentSection = () => {
             )}
           </div>
         </div>
-        <div className="reserve-button" onClick={createReservation}>
+        <div className="reserve-button" onClick={()=>{createReservation(User)}}>
           <button className="reserve-btn">
             <div className="reserve-text">
               <p>Reserve</p>

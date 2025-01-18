@@ -25,7 +25,7 @@ export const ReservationContexProvider = ({ children }) => {
     setUser(JSON.parse(storedUser));
   }, []);
 
-  const createReservation = async () => {
+  const createReservation = async (User) => {
     console.log("logged in user", User);
     try {
       if (!User) {

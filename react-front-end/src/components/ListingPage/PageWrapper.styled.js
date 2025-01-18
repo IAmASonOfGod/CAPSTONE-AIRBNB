@@ -6,8 +6,7 @@ export const MyPageWrapper = styled.div`
   padding: 24px 160px 64px;
   gap: 40px;
   width: 1512px;
-  // height: calc(4416px - 45px);
-  height: 4416px;
+  height: auto;
   background: #ffffff;
 
   .divider {
