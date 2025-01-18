@@ -25,10 +25,12 @@ export const ReservationContexProvider = ({ children }) => {
     setUser(JSON.parse(storedUser));
   }, []);
 
-  const createReservation = async (User) => {
-    console.log("logged in user", User);
+  const createReservation = async () => {
+    const storedUser = localStorage.getItem("loggedInUser");
+    const User = JSON.parse(storedUser);
     try {
       if (!User) {
+        console.log("logged in user", User);
         alert(`Login before making a reservation`);
         return;
       }
@@ -80,7 +82,7 @@ export const ReservationContexProvider = ({ children }) => {
   useEffect(() => {
     if (User) {
       fetchUserReservations(User._id);
-      fetchAllReservations()
+      fetchAllReservations();
       console.log("userReservations :", userReservations);
     }
   }, [User]);
@@ -91,9 +93,9 @@ export const ReservationContexProvider = ({ children }) => {
         `/Reservations/deleteReservation/${reservationId}`
       );
       if (response.status === 200) {
-        console.log("Reservation deleted successfully");
         fetchUserReservations(User._id);
-        fetchAllReservations()
+        fetchAllReservations();
+        console.log("Reservation deleted successfully");
       } else {
         console.error("Failed to delete reservation:", response);
       }

@@ -231,7 +231,7 @@ const PaymentSection = () => {
             )}
           </div>
         </div>
-        <div className="reserve-button" onClick={()=>{createReservation(User)}}>
+        <div className="reserve-button" onClick={createReservation}>
           <button className="reserve-btn">
             <div className="reserve-text">
               <p>Reserve</p>
