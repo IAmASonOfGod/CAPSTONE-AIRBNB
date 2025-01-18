@@ -1,0 +1,8 @@
+{
+  "watch": ["node-back-end/**/*.ts"],
+  "ext": "ts,js,json",
+  "execMap": {
+    "ts": "node --experimental-specifier-resolution=node --loader ts-node/esm"
+  },
+  "verbose": true
+}
