@@ -18,14 +18,14 @@ export const ImageProvider = ({ children }: ImageUploadProviderProps) => {
    let file: File;
 
    if (typeof image === "string") {
-     // If it's a base64 string, convert it to a File
+    
      console.log("Received base64 image:", image);
 
      const [metadata, base64] = image.split(",");
-     const mimeType = metadata.split(":")[1].split(";")[0]; // Extract mime type
+     const mimeType = metadata.split(":")[1].split(";")[0]; 
      console.log("Extracted mimeType:", mimeType);
 
-     const byteCharacters = atob(base64); // Decode base64 string to bytes
+     const byteCharacters = atob(base64); 
      console.log("Decoded base64 string into byte characters.");
 
      const byteArrays: number[] = [];
@@ -35,21 +35,20 @@ export const ImageProvider = ({ children }: ImageUploadProviderProps) => {
        const slice = byteCharacters.slice(offset, offset + 1024);
        const byteNumbers: number[] = new Array(slice.length);
 
-       // Populate byteNumbers with char codes
        for (let i = 0; i < slice.length; i++) {
          byteNumbers[i] = slice.charCodeAt(i);
        }
 
-       byteArrays.push(...byteNumbers); // Add byteNumbers to byteArrays
+       byteArrays.push(...byteNumbers);
      }
 
-     const byteArray = new Uint8Array(byteArrays); // Convert to Uint8Array
+     const byteArray = new Uint8Array(byteArrays); 
      console.log("Converted byte array to Uint8Array.");
 
-     file = new File([byteArray], "uploaded_image.jpg", { type: mimeType }); // Create File object
+     file = new File([byteArray], "uploaded_image.jpg", { type: mimeType }); 
      console.log("Created File object from base64 data:", file);
    } else {
-     // If it's already a File object, use it directly
+  
      console.log("Received File object:", image);
      file = image;
    }

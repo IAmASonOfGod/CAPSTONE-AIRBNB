@@ -12,6 +12,9 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+console.log("dirname__", __dirname)
+console.log("filrname", __filename)
+
 class Server {
   app: Application;
   dbUrl: string;

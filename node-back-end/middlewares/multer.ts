@@ -2,12 +2,14 @@ import multer from "multer";
 import path from "path";
 import { Request } from "express";
 import fs from "fs";
+import { fileURLToPath } from "url";
 
-const uploadDir = path.resolve(
-  "C:/Users/mbali/OneDrive/Desktop/CAPSTONE-AIRBNB-APP/node-back-end/uploads"
-);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Ensure the "uploads" directory exists, create it if not
+const uploadDir = path.resolve(__dirname, "uploads");
+console.log("uploadsDir :", uploadDir)
+
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
