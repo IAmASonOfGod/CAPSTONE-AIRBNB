@@ -111,17 +111,23 @@ export class AccommodationController {
   }
 
   public static async imageUpload(req, res) {
+    console.log("Received request to upload image...");
+
     try {
       if (!req.file) {
+        console.log("No file uploaded");
         return res.status(400).json({ error: "No file uploaded" });
       }
 
-      const protocol = req.protocol; 
-      const host = req.get("host"); 
+      const protocol = req.protocol;
+      const host = req.get("host");
+
+      console.log("protocol :", protocol);
+      console.log("host :", host);
 
       // Construct the image URL
       const fileUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
-
+      console.log("file url :", fileUrl);
 
       // Send the file URL back to the client
       return res.status(200).json({ imageUrl: fileUrl });

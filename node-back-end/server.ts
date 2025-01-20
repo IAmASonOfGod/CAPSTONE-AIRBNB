@@ -12,8 +12,8 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.log("dirname__", __dirname)
-console.log("filrname", __filename)
+// console.log("dirname__", __dirname)
+// console.log("filrname", __filename)
 
 class Server {
   app: Application;
@@ -37,7 +37,7 @@ class Server {
     this.app.use(express.json());
 
    const uploadsDir = path.join(__dirname, "uploads");
-   console.log("relative path :", uploadsDir)
+  //  console.log("relative path :", uploadsDir)
 
     this.app.use("/uploads", express.static(uploadsDir));
 

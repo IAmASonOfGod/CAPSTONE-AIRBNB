@@ -6,9 +6,9 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const uploadDir = path.resolve(__dirname, "..", "uploads");
 
-const uploadDir = path.resolve(__dirname, "uploads");
-console.log("uploadsDir :", uploadDir)
+console.log("uploadsDir :", uploadDir);
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
@@ -18,9 +18,12 @@ if (!fs.existsSync(uploadDir)) {
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, uploadDir);
+    console.log(`File saved to directory: ${uploadDir}`); // Log directory
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}_${file.originalname}`);
+    const filename = `${Date.now()}_${file.originalname}`;
+    cb(null, filename);
+    console.log(`File uploaded: ${filename}`); // Log filename
   },
 });
 
