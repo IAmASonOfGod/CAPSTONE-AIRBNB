@@ -116,8 +116,12 @@ export class AccommodationController {
         return res.status(400).json({ error: "No file uploaded" });
       }
 
-      // Construct the URL based on the saved file's path
-      const fileUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+      const protocol = req.protocol; 
+      const host = req.get("host"); 
+
+      // Construct the image URL
+      const fileUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
+
 
       // Send the file URL back to the client
       return res.status(200).json({ imageUrl: fileUrl });
@@ -185,7 +189,6 @@ export class AccommodationController {
 
       if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ message: "Invalid listing ID" });
-        
       }
 
       const updateData = req.body;
