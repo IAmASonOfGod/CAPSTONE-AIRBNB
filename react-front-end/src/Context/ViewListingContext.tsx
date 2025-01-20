@@ -39,7 +39,7 @@ export const ViewListingContextProvider = ({
   const fetchUserListings = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/accommodations/Userlistings"
+        "https://capstone-airbnb-backend.onrender.com/accommodations/Userlistings"
       );
       setUserListings(response.data.data);
       console.log("Fetching User List Successful:", response.data.data);
