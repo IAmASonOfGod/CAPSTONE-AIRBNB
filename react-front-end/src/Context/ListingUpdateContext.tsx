@@ -74,7 +74,7 @@ export const ListingUpdateProvider: React.FC<{ children: React.ReactNode }> = ({
       if (ListingId) {
         try {
           const response = await api.get(
-            `accommodations/listings/${ListingId}`
+            `/api/accommodations/listings/${ListingId}`
           );
           setFormData(response.data);
         } catch (error) {
@@ -129,7 +129,7 @@ export const ListingUpdateProvider: React.FC<{ children: React.ReactNode }> = ({
       console.log("Final form data before sending:", finalFormData);
 
       const response = await api.patch(
-        `/accommodations/listings/update/${ListingId}`,
+        `/api/accommodations/listings/update/${ListingId}`,
         {
           ...finalFormData,
           price: parseInt(updatedFormData.price),
@@ -167,7 +167,7 @@ export const ListingUpdateProvider: React.FC<{ children: React.ReactNode }> = ({
         setListingId,
         ListingId,
         formData,
-        setPreviousImg, // Providing setPreviousImg function to context
+        setPreviousImg,
       }}
     >
       {children}

@@ -41,7 +41,7 @@ export const ReservationContexProvider = ({ children }) => {
       };
 
       const response = await api.post(
-        "/Reservations/createReservation",
+        "/api/Reservations/createReservation",
         finalReservationDetails
       );
 
@@ -58,7 +58,7 @@ export const ReservationContexProvider = ({ children }) => {
 
   const fetchUserReservations = async (userId) => {
     try {
-      const response = await api.get(`/Reservations/FindReservation/${userId}`);
+      const response = await api.get(`/api/Reservations/FindReservation/${userId}`);
       console.log("User Reservations:", response.data);
       setUserReservations(response.data);
     } catch (error) {
@@ -69,7 +69,7 @@ export const ReservationContexProvider = ({ children }) => {
 
   const fetchAllReservations = async () => {
     try {
-      const response = await api.get("/Reservations/FindAllReservations");
+      const response = await api.get("/api/Reservations/FindAllReservations");
       console.log("All Reservations:", response.data);
       setAllReservations(response.data);
       console.log("All Reservations:", response.data);
@@ -90,7 +90,7 @@ export const ReservationContexProvider = ({ children }) => {
   const deleteReservation = async (reservationId) => {
     try {
       const response = await api.delete(
-        `/Reservations/deleteReservation/${reservationId}`
+        `/api/Reservations/deleteReservation/${reservationId}`
       );
       if (response.status === 200) {
         fetchUserReservations(User._id);

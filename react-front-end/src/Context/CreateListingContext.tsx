@@ -128,7 +128,7 @@ export const ListingProvider = ({ children }: ListingProviderProps) => {
 
       console.log("Final form data before sending:", finalFormData);
 
-      const response = await api.post("/accommodations/createListing", {
+      const response = await api.post("/api/accommodations/createListing", {
         ...finalFormData,
         price: parseInt(updatedFormData.price),
         guests: parseInt(updatedFormData.guests),

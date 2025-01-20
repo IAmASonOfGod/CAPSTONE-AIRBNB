@@ -33,12 +33,10 @@ class Server {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
 
-    // Serve uploaded files statically
-    const uploadsDir = path.resolve(
-      "C:/Users/mbali/OneDrive/Desktop/CAPSTONE-AIRBNB-APP/node-back-end/uploads"
-    );
+   const uploadsDir = path.join(__dirname, "uploads");
+   console.log("relative path :", uploadsDir)
+
     this.app.use("/uploads", express.static(uploadsDir));
-    // console.log("Uploads directory:", uploadsDir);
 
     this.connectMongoDB();
     this.setRoutes();

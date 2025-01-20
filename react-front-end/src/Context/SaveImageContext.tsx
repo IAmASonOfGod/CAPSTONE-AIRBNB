@@ -63,7 +63,7 @@ export const ImageProvider = ({ children }: ImageUploadProviderProps) => {
      // Send the FormData to the server
      console.log("Sending image to server...");
      const response = await axios.post(
-       "https://capstone-airbnb-backend.onrender.com/accommodations/imageUpload",
+       "https://capstone-airbnb-backend.onrender.com/api/accommodations/imageUpload",
        formData
      );
      console.log("Image uploaded successfully. Response:", response.data);

@@ -9,7 +9,7 @@ export const DeleteListingProvider = ({ children }) => {
 
   const deleteListing = async (id) => {
     try {
-      await api.delete(`/accommodations/listings/delete/${id}`);
+      await api.delete(`/api/accommodations/listings/delete/${id}`);
       console.log(`Listing with ID ${id} deleted successfully`);
 
       await fetchListings();

@@ -28,7 +28,7 @@ export const ViewListingContextProvider = ({
 
   const fetchListings = async () => {
     try {
-      const response = await api.get("/accommodations/listings");
+      const response = await api.get("/api/accommodations/listings");
       setListings(response.data.data);
       console.log("Fetching List Successful:", response.data.data);
     } catch (error) {
@@ -39,7 +39,7 @@ export const ViewListingContextProvider = ({
   const fetchUserListings = async () => {
     try {
       const response = await axios.get(
-        "https://capstone-airbnb-backend.onrender.com/accommodations/Userlistings"
+        "https://capstone-airbnb-backend.onrender.com/api/accommodations/Userlistings"
       );
       setUserListings(response.data.data);
       console.log("Fetching User List Successful:", response.data.data);
