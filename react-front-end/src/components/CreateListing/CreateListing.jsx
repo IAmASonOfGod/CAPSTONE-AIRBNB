@@ -51,7 +51,7 @@ const Form = () => {
       const reader = new FileReader();
       reader.onload = (event) => {
         previews.push(event.target.result);
-        images.push(event.target.result); // Push base64 data to the images array
+        images.push(event.target.result);
         if (previews.length === files.length) {
           setImagePreviews(previews);
           setImages(images); // Update images in context

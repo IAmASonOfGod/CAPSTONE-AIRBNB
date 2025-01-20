@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { HostReservationWrapper } from "./HostReservations.styled";
 import { ReactComponent as Logo } from "./Logo.svg";
 import { ReactComponent as DropDown } from "./DropDown.svg";
@@ -9,7 +9,7 @@ import { useReservationContext } from "../../Context/ReservationContext.jsx";
 
 const HostReservertions = () => {
   const navigate = useNavigate();
-  const { allReservations, deleteReservation } = useReservationContext();
+  const { allReservations = [], deleteReservation } = useReservationContext();
   const { loggedInUser, logoutUser } = useLoginContext();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -34,7 +34,7 @@ const HostReservertions = () => {
           <Logo />
         </div>
         <div className="right-dropdown-menu">
-          <p>{loggedInUser ? loggedInUser.username : "Host name"}</p>
+          <p>{loggedInUser?.username || "Host name"}</p>
           <div onClick={toggleDropdown}>
             <DropDown />
           </div>
@@ -75,32 +75,42 @@ const HostReservertions = () => {
               </tr>
             </thead>
             <tbody>
-              {allReservations.map((reservation) => (
-                <tr key={reservation._id}>
-                  <td>{reservation.userId.username}</td>
-                  {""}
-                  <td>{reservation.listingId.title}</td>
-                  {""}
-                  <td>
-                    {new Date(reservation.checkInDate).toLocaleDateString()}
-                  </td>
-                  {""}
-                  <td>
-                    {new Date(reservation.checkOutDate).toLocaleDateString()}
-                  </td>
-                  {""}
-                  <td>
-                    <button
-                      className="delete-button"
-                      onClick={() =>
-                        handleDelete(reservation._id)
-                      }
-                    >
-                      Delete
-                    </button>
+              {allReservations.length > 0 ? (
+                allReservations.map((reservation) => (
+                  <tr key={reservation?._id}>
+                    <td>{reservation?.userId?.username || "Unknown"}</td>
+                    <td>{reservation?.listingId?.title || "No Title"}</td>
+                    <td>
+                      {reservation?.checkInDate
+                        ? new Date(reservation.checkInDate).toLocaleDateString()
+                        : "N/A"}
+                    </td>
+                    <td>
+                      {reservation?.checkOutDate
+                        ? new Date(
+                            reservation.checkOutDate
+                          ).toLocaleDateString()
+                        : "N/A"}
+                    </td>
+                    <td>
+                      <button
+                        className="delete-button"
+                        onClick={() =>
+                          reservation?._id && handleDelete(reservation._id)
+                        }
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" style={{ textAlign: "center" }}>
+                    No reservations found.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
