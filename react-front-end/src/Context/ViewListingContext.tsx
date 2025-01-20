@@ -10,7 +10,7 @@ interface ViewListingContextType {
   fetchListings: () => Promise<void>;
   fetchUserListings: () => Promise<void>;
   setcurrentListing: React.Dispatch<React.SetStateAction<any>>;
-  setUserListings: React.Dispatch<React.SetStateAction<any[]>>; 
+  setUserListings: React.Dispatch<React.SetStateAction<any[]>>;
 }
 const ViewListingContext = createContext<ViewListingContextType | undefined>(
   undefined
@@ -24,7 +24,7 @@ export const ViewListingContextProvider = ({
   const [listings, setListings] = useState<any[]>([]);
   const [userListings, setUserListings] = useState<any[]>([]);
   const [currentListing, setcurrentListing] = useState({});
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const fetchListings = async () => {
     try {
@@ -39,7 +39,7 @@ export const ViewListingContextProvider = ({
   const fetchUserListings = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/accommodations/Userlistings"
+        "https://capstone-airbnb-backend.onrender.com/accommodations/Userlistings"
       );
       setUserListings(response.data.data);
       console.log("Fetching User List Successful:", response.data.data);

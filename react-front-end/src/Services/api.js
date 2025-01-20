@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://capstone-airbnb-backend.onrender.com",
 });
 
 // Interceptor to attach the access token to each request
@@ -78,7 +78,7 @@ api.interceptors.response.use(
       }
     }
 
-    return Promise.reject(error); 
+    return Promise.reject(error);
   }
 );
 

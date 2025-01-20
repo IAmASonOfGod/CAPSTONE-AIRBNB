@@ -47,7 +47,7 @@ const LoginContextProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/user/login",
+        "https://capstone-airbnb-backend.onrender.com/user/login",
         getLoginPayload()
       );
 
