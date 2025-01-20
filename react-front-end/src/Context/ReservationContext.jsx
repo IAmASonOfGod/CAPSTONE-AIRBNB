@@ -1,17 +1,24 @@
-import React, { useEffect, useContext, createContext, useState } from "react";
+import React, {
+  useEffect,
+  useContext,
+  createContext,
+  useState,
+  useRef,
+} from "react";
 import api from "../Services/api.js";
 import { useNavigate } from "react-router-dom";
-// import { useLoginContext } from "./LoginContext.tsx";
 
 const ReservationContext = createContext({});
 
 export const ReservationContexProvider = ({ children }) => {
-  // const { loggedInUser } = useLoginContext();
   const [Reservation, setReservation] = useState({});
   const [userReservations, setUserReservations] = useState([]);
   const [allReservations, setAllReservations] = useState([]);
   const [User, setUser] = useState();
   const navigate = useNavigate();
+
+
+  const createReservationRef = useRef(false);
 
   const updateReservation = (details) => {
     setReservation((prev) => ({
@@ -25,43 +32,44 @@ export const ReservationContexProvider = ({ children }) => {
     setUser(JSON.parse(storedUser));
   }, []);
 
-const createReservation = async () => {
-  if (createReservationRef.current) return; 
-  createReservationRef.current = true;
+  const createReservation = async () => {
+    if (createReservationRef.current) return;
+    createReservationRef.current = true;
 
-  const storedUser = localStorage.getItem("loggedInUser");
-  const User = JSON.parse(storedUser);
+    const storedUser = localStorage.getItem("loggedInUser");
+    const User = JSON.parse(storedUser);
 
-  try {
-    if (!User) {
-      alert(`Login before making a reservation`);
-      return;
+    try {
+      if (!User) {
+        alert(`Login before making a reservation`);
+        return;
+      }
+
+      const finalReservationDetails = {
+        ...Reservation,
+        UserId: User._id,
+      };
+
+      const response = await api.post(
+        "/api/Reservations/createReservation",
+        finalReservationDetails
+      );
+
+      console.log("Reservation made:", response.data.reservation);
+      fetchUserReservations(User._id);
+      navigate("/UserReservations");
+    } catch (e) {
+      console.error("Error creating reservation:", e);
+    } finally {
+      createReservationRef.current = false; 
     }
-
-    const finalReservationDetails = {
-      ...Reservation,
-      UserId: User._id,
-    };
-
-    const response = await api.post(
-      "/api/Reservations/createReservation",
-      finalReservationDetails
-    );
-
-    console.log("Reservation made:", response.data.reservation);
-    fetchUserReservations(User._id);
-    navigate("/UserReservations");
-  } catch (e) {
-    console.error("Error creating reservation:", e);
-  } finally {
-    createReservationRef.current = false; // Reset after operation
-  }
-};
-
+  };
 
   const fetchUserReservations = async (userId) => {
     try {
-      const response = await api.get(`/api/Reservations/FindReservation/${userId}`);
+      const response = await api.get(
+        `/api/Reservations/FindReservation/${userId}`
+      );
       console.log("User Reservations:", response.data);
       setUserReservations(response.data);
     } catch (error) {
