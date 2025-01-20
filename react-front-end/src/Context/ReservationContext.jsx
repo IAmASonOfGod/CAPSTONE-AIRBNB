@@ -25,36 +25,39 @@ export const ReservationContexProvider = ({ children }) => {
     setUser(JSON.parse(storedUser));
   }, []);
 
-  const createReservation = async () => {
-    const storedUser = localStorage.getItem("loggedInUser");
-    const User = JSON.parse(storedUser);
-    try {
-      if (!User) {
-        console.log("logged in user", User);
-        alert(`Login before making a reservation`);
-        return;
-      }
+const createReservation = async () => {
+  if (createReservationRef.current) return; 
+  createReservationRef.current = true;
 
-      const finalReservationDetails = {
-        ...Reservation,
-        UserId: User._id,
-      };
+  const storedUser = localStorage.getItem("loggedInUser");
+  const User = JSON.parse(storedUser);
 
-      const response = await api.post(
-        "/api/Reservations/createReservation",
-        finalReservationDetails
-      );
-
-      console.log("Reservation made:", response.data.reservation);
-      fetchUserReservations(User._id);
-      navigate("/UserReservations");
-    } catch (e) {
-      console.error(
-        "An error occurred during the creation of a reservation:",
-        e?.response || e.message || e
-      );
+  try {
+    if (!User) {
+      alert(`Login before making a reservation`);
+      return;
     }
-  };
+
+    const finalReservationDetails = {
+      ...Reservation,
+      UserId: User._id,
+    };
+
+    const response = await api.post(
+      "/api/Reservations/createReservation",
+      finalReservationDetails
+    );
+
+    console.log("Reservation made:", response.data.reservation);
+    fetchUserReservations(User._id);
+    navigate("/UserReservations");
+  } catch (e) {
+    console.error("Error creating reservation:", e);
+  } finally {
+    createReservationRef.current = false; // Reset after operation
+  }
+};
+
 
   const fetchUserReservations = async (userId) => {
     try {
