@@ -51,6 +51,11 @@ const UserListing = () => {
                     <img
                       src={`${listing.images[0]}`}
                       alt={`${listing.title}`}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src =
+                          "https://img.jamesedition.com/listing_images/2020/10/23/15/50/44/c5ea9c06-aae0-4af0-92b3-c50abfe55bbe/je/2000xxs.jpg";
+                      }}
                     />
                   </div>
                   <div className="listing-content">
