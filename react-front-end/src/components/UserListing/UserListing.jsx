@@ -8,9 +8,15 @@ import { useLocationProvider } from "../../Context/currentLocationContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 const UserListing = () => {
-  const { userListings, setcurrentListing } = useViewListingContext();
+  const { userListings, setcurrentListing, fetchListings, fetchUserListings } =
+    useViewListingContext();
   const { currentLocation } = useLocationProvider();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchListings();
+    fetchUserListings();
+  }, []);
 
   const handleCurrentListing = (listing) => {
     setcurrentListing(listing);
