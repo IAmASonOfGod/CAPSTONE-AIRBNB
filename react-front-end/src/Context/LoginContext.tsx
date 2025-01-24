@@ -79,7 +79,7 @@ const LoginContextProvider = ({ children }) => {
         "Login failed:",
         error.response ? error.response.data : error.message
       );
-      setError(error.response?.data || "Login failed. Please try again.");
+      setError(error.message || "Login failed. Please try again.");
     }
   };
 

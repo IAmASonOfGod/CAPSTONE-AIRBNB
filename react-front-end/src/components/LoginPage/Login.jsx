@@ -38,7 +38,7 @@ const Login = () => {
             required
           />
         </div>
-        {error && <p className="err-msg">An Error Occured During The Loggin Process...</p>}
+        {error && <p className="err-msg">{error}</p>}
 
         <div className="Btns">
           <button className="ForgotBtn" type="button">

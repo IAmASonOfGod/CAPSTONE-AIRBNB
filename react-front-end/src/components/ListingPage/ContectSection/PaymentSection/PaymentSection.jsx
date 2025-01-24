@@ -231,7 +231,10 @@ const PaymentSection = () => {
             )}
           </div>
         </div>
-        <div className="reserve-button" onClick={createReservation}>
+        <div
+          className="reserve-button"
+          onClick={()=>{createReservation({checkInDate, checkOutDate});}}
+        >
           <button className="reserve-btn">
             <div className="reserve-text">
               <p>Reserve</p>

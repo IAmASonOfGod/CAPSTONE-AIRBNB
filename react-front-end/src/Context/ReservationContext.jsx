@@ -4,6 +4,7 @@ import React, {
   createContext,
   useState,
   useRef,
+  useMemo,
 } from "react";
 import api from "../Services/api.js";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +17,6 @@ export const ReservationContexProvider = ({ children }) => {
   const [allReservations, setAllReservations] = useState([]);
   const [User, setUser] = useState();
   const navigate = useNavigate();
-
 
   const createReservationRef = useRef(false);
 
@@ -32,16 +32,24 @@ export const ReservationContexProvider = ({ children }) => {
     setUser(JSON.parse(storedUser));
   }, []);
 
-  const createReservation = async () => {
+  const createReservation = async ({ checkInDate, checkOutDate }) => {
     if (createReservationRef.current) return;
     createReservationRef.current = true;
+
+    const checkIn = new Date(checkInDate);
+    const checkOut = new Date(checkOutDate);
+
+    if (checkOut <= checkIn) {
+      alert("The checkout date must be later than the check-in date.");
+      return;
+    }
 
     const storedUser = localStorage.getItem("loggedInUser");
     const User = JSON.parse(storedUser);
 
     try {
       if (!User) {
-        alert(`Login before making a reservation`);
+        alert("Login before making a reservation");
         return;
       }
 
@@ -61,7 +69,7 @@ export const ReservationContexProvider = ({ children }) => {
     } catch (e) {
       console.error("Error creating reservation:", e);
     } finally {
-      createReservationRef.current = false; 
+      createReservationRef.current = false;
     }
   };
 
@@ -93,9 +101,8 @@ export const ReservationContexProvider = ({ children }) => {
   useEffect(() => {
     if (User) {
       fetchUserReservations(User._id);
-      fetchAllReservations();
-      console.log("userReservations :", userReservations);
     }
+    fetchAllReservations();
   }, [User]);
 
   const deleteReservation = async (reservationId) => {
@@ -118,20 +125,23 @@ export const ReservationContexProvider = ({ children }) => {
     }
   };
 
+  const contextValue = useMemo(
+    () => ({
+      createReservation,
+      userReservations,
+      Reservation,
+      User,
+      updateReservation,
+      deleteReservation,
+      fetchUserReservations,
+      fetchAllReservations,
+      allReservations,
+    }),
+    [createReservation, userReservations, Reservation, User, allReservations]
+  );
+
   return (
-    <ReservationContext.Provider
-      value={{
-        createReservation,
-        userReservations,
-        Reservation,
-        User,
-        updateReservation,
-        deleteReservation,
-        fetchUserReservations,
-        fetchAllReservations,
-        allReservations,
-      }}
-    >
+    <ReservationContext.Provider value={contextValue}>
       {children}
     </ReservationContext.Provider>
   );
