@@ -41,6 +41,7 @@ export const ReservationContexProvider = ({ children }) => {
 
     if (checkOut <= checkIn) {
       alert("The checkout date must be later than the check-in date.");
+      createReservationRef.current = false; 
       return;
     }
 
