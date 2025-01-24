@@ -112,5 +112,15 @@ export const FormContainer = styled.form`
   cursor: pointer;
   }
 
+  .err-msg{
+  width: 360px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+   .err-msg p{
+   margin: 0px;}
 
 `;
