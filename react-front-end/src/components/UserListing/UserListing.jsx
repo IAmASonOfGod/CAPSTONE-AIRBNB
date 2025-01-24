@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { UserListingWrapper } from "./UserListing.styled";
 import UserListHeader from "./UserListHeader";
 import { ReactComponent as Heart } from "./Heart.svg";
@@ -14,8 +14,10 @@ const UserListing = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchListings();
-    fetchUserListings();
+    const fetchAllData = async () => {
+      await Promise.all([fetchListings(), fetchUserListings()]);
+    };
+    fetchAllData();
   }, []);
 
   const handleCurrentListing = (listing) => {
@@ -25,10 +27,11 @@ const UserListing = () => {
     console.log("currentlisting set", JSON.stringify(listing));
   };
 
-  const filteredListings =
-    currentLocation && currentLocation !== "All locations"
+  const filteredListings = useMemo(() => {
+    return currentLocation && currentLocation !== "All locations"
       ? userListings.filter((listing) => listing.location === currentLocation)
       : userListings;
+  }, [userListings, currentLocation]);
 
   return (
     <UserListingWrapper>
@@ -39,24 +42,23 @@ const UserListing = () => {
         <div className="listing-header">
           <p>
             {filteredListings.length} stays in{" "}
-            {currentLocation ? currentLocation : "all locations"}
+            {currentLocation || "all locations"}
           </p>
         </div>
         <div className="listing-cards-container">
-          {filteredListings && filteredListings.length > 0 ? (
+          {filteredListings.length > 0 ? (
             filteredListings.map((listing) => (
               <div
                 key={listing._id}
                 className="listing-card"
-                onClick={() => {
-                  handleCurrentListing(listing);
-                }}
+                onClick={() => handleCurrentListing(listing)}
               >
                 <div className="listing">
                   <div className="listing-img">
                     <img
-                      src={`${listing.images[0]}`}
-                      alt={`${listing.title}`}
+                      src={listing.images[0]}
+                      alt={listing.title}
+                      loading="lazy"
                       onError={(e) => {
                         e.target.onerror = null;
                         e.target.src =
@@ -121,9 +123,7 @@ const UserListing = () => {
             ))
           ) : (
             <p className="listing-welcome-msg">
-              {userListings && userListings.length > 0
-                ? "Listings are currently loading..."
-                : "No listings available..."}
+              {userListings.length > 0 && "Listings are currently loading..."}
             </p>
           )}
         </div>
