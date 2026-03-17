@@ -5,7 +5,7 @@ export const ListingFooter1Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 32px;
-  width: 1512px;
+  width: 100%;
   height: 464px;
   background: #f9fafb;
   box-shadow: inset 0px -1px 0px #e5e7eb;

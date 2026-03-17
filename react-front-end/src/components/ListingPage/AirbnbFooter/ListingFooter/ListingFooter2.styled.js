@@ -5,7 +5,7 @@ export const ListingFooter2Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 48px;
-  width: 1512px;
+  width: 100%;
   height: 424px;
   background: #f9fafb;
   padding-top: 20px;

@@ -9,7 +9,7 @@ class UserRouter {
   constructor() {
     this.postRoutes();
   }
-
+ 
   postRoutes() {
     router.post(
       "/login",

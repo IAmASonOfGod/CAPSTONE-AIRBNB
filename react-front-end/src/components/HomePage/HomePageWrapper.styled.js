@@ -6,6 +6,6 @@ export const HomePageWrapper = styled.div`
   align-items: flex-start;
   padding: 0px;
   position: relative;
-  width: 1512px;
+  width: 100%;
   height: 4497px;
 `;
