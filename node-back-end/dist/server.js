@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import { getEnvironmentVariables } from "./environments/environment";
+import { getEnvironmentVariables } from "./environments/environment.js";
 import userRouter from "./routers/UserRouter";
 import AccomodationRouter from "./routers/AccomodationRouter";
 import ReservationRouter from "./routers/ReservationRouter";
