@@ -1,0 +1,40 @@
+import multer from "multer";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const uploadDir = path.resolve(__dirname, "..", "uploads");
+console.log("uploadsDir :", uploadDir);
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+// Set up multer storage options
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, uploadDir);
+        console.log(`File saved to directory: ${uploadDir}`); // Log directory
+    },
+    filename: (req, file, cb) => {
+        const filename = `${Date.now()}_${file.originalname}`;
+        cb(null, filename);
+        console.log(`File uploaded: ${filename}`); // Log filename
+    },
+});
+const fileFilter = (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png|gif/;
+    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimeType = fileTypes.test(file.mimetype);
+    if (extname && mimeType) {
+        return cb(null, true);
+    }
+    else {
+        cb(new Error("Error: Images Only!"));
+    }
+};
+// Create multer upload instance with storage, file filter, and file size limit
+const upload = multer({
+    storage,
+    fileFilter,
+});
+export default upload;

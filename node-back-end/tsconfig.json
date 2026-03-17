@@ -13,9 +13,12 @@
   },
   "include": [
     "index.ts",
+    "server.ts",
     "controllers/**/*.ts",
     "models/**/*.ts",
-    "routers/**/*.ts"
+    "routers/**/*.ts",
+    "middlewares/**/*.ts",
+    "environments/**/*.ts"
   ],
   "exclude": ["node_modules"],
   "ts-node": {

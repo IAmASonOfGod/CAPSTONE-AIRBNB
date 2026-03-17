@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import Listing from "../models/Accomodation";
 import { JwtUtil } from "../Utils/Jwt";
 import mongoose from "mongoose";
-import { CustomRequest } from "../middlewares/multer";
 
 interface CreateListingRequestBody {
   title: string;
@@ -25,10 +24,10 @@ interface MulterFile {
   path: string;
 }
 
-interface CustomRequestWithFile extends CustomRequest {
+type CustomRequestWithFile = Request & {
   body: CreateListingRequestBody;
-  file: Express.Multer.File;
-}
+  file: any;
+};
 
 export class AccommodationController {
   static async createListing(
