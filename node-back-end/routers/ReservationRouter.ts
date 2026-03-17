@@ -1,7 +1,7 @@
 import express from "express";
-import { ReservationValidators } from "../validators/ReservationValidators";
-import { GlobalMiddleware } from "../middlewares/GlobalMiddlewares";
-import { ReservationController } from "../controllers/ReservationController";
+import { ReservationValidators } from "../validators/ReservationValidators.js";
+import { GlobalMiddleware } from "../middlewares/GlobalMiddlewares.js";
+import { ReservationController } from "../controllers/ReservationController.js";
 
 const router = express.Router();
 

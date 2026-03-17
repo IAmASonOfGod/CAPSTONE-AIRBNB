@@ -1,5 +1,5 @@
-import Listing from "../models/Accomodation";
-import { JwtUtil } from "../Utils/Jwt";
+import Listing from "../models/Accomodation.js";
+import { JwtUtil } from "../Utils/Jwt.js";
 import mongoose from "mongoose";
 export class AccommodationController {
     static async createListing(req, res) {

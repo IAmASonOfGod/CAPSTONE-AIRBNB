@@ -1,6 +1,6 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import * as bcrypt from "bcrypt";
-import { JwtUtil } from "../Utils/Jwt";
+import { JwtUtil } from "../Utils/Jwt.js";
 export class UserController {
     static async login(req, res, next) {
         console.log("Login route hit");

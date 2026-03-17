@@ -1,5 +1,5 @@
 import Jwt from "jsonwebtoken";
-import { getEnvironmentVariables } from "../environments/environment";
+import { getEnvironmentVariables } from "../environments/environment.js";
 import * as Crypto from "crypto";
 const { jwt_secret_key, jwt_refresh_secret_key } = getEnvironmentVariables();
 export class JwtUtil {

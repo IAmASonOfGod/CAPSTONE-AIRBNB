@@ -1,7 +1,7 @@
 import express from "express";
-import { UserController } from "../controllers/UserController";
-import { UserValidators } from "../validators/UserValidator";
-import { GlobalMiddleware } from "../middlewares/GlobalMiddlewares";
+import { UserController } from "../controllers/UserController.js";
+import { UserValidators } from "../validators/UserValidator.js";
+import { GlobalMiddleware } from "../middlewares/GlobalMiddlewares.js";
 
 const router = express.Router();
 

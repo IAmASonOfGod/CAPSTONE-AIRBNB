@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import Listing from "../models/Accomodation";
-import { JwtUtil } from "../Utils/Jwt";
+import Listing from "../models/Accomodation.js";
+import { JwtUtil } from "../Utils/Jwt.js";
 import mongoose from "mongoose";
 
 interface CreateListingRequestBody {

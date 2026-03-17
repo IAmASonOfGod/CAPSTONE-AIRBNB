@@ -1,5 +1,5 @@
-import Listing from "../models/Accomodation";
-import Reservation from "../models/Reservation";
+import Listing from "../models/Accomodation.js";
+import Reservation from "../models/Reservation.js";
 
 export class ReservationController {
   static async createReservation(req, res) {

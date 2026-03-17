@@ -1,7 +1,7 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import * as bcrypt from "bcrypt";
-import { getEnvironmentVariables } from "../environments/environment";
-import { JwtUtil } from "../Utils/Jwt";
+import { getEnvironmentVariables } from "../environments/environment.js";
+import { JwtUtil } from "../Utils/Jwt.js";
 
 export class UserController {
   static async login(req, res, next) {

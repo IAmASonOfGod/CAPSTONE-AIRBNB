@@ -1,8 +1,8 @@
 import express from "express";
-import { ListingValidators } from "../validators/AccommodationValidator";
-import { GlobalMiddleware } from "../middlewares/GlobalMiddlewares";
-import { AccommodationController } from "../controllers/AccomodationController";
-import upload from "../middlewares/multer";
+import { ListingValidators } from "../validators/AccommodationValidator.js";
+import { GlobalMiddleware } from "../middlewares/GlobalMiddlewares.js";
+import { AccommodationController } from "../controllers/AccomodationController.js";
+import upload from "../middlewares/multer.js";
 
 const router = express.Router();
 

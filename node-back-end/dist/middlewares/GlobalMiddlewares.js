@@ -1,5 +1,5 @@
 import { validationResult } from "express-validator";
-import { JwtUtil } from "../Utils/Jwt";
+import { JwtUtil } from "../Utils/Jwt.js";
 export class GlobalMiddleware {
     static checkErrors(req, res, next) {
         const errors = validationResult(req);
