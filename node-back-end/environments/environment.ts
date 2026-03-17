@@ -1,5 +1,5 @@
-import { DevEnvironment } from "./environment.dev";
-import { ProdEnvironment } from "./environment.prod";
+import { DevEnvironment } from "./environment.dev.js";
+import { ProdEnvironment } from "./environment.prod.js";
 
 
 export interface Environment {

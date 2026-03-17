@@ -1,9 +1,9 @@
 import express, { Application } from "express";
 import mongoose from "mongoose";
 import { getEnvironmentVariables } from "./environments/environment.js";
-import userRouter from "./routers/UserRouter";
-import AccomodationRouter from "./routers/AccomodationRouter";
-import ReservationRouter from "./routers/ReservationRouter";
+import userRouter from "./routers/UserRouter.js";
+import AccomodationRouter from "./routers/AccomodationRouter.js";
+import ReservationRouter from "./routers/ReservationRouter.js";
 import cors, { CorsOptions } from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
