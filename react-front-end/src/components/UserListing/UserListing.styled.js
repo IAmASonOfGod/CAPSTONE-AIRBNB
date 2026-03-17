@@ -33,7 +33,7 @@ export const UserListingWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: min(100%, 1440px);
+    width: min(80vw, 1900px);
     height: 44px;
   }
 
@@ -52,7 +52,7 @@ export const UserListingWrapper = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
-    width: min(100%, 1440px);
+    width: min(80vw, 1900px);
     height: 262;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
