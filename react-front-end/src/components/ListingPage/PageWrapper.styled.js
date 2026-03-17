@@ -2,15 +2,15 @@ import styled from "styled-components";
 export const MyPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 24px 160px 64px;
+  align-items: stretch;
+  padding: 24px 80px 64px;
   gap: 40px;
-  width: 1512px;
+  width: 100vw;
   height: auto;
   background: #ffffff;
 
   .divider {
-    width: 1120px;
+    width: 100%;
     height: 0px;
     border: 1px solid #e5e7eb;
     margin: 0px;

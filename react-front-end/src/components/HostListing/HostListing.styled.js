@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const HostListingWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1512px;
-  height: 1339px;
+  width: 100vw;
+  min-height: 100vh;
 
   .host-listing-header {
     display: flex;
@@ -12,7 +12,7 @@ export const HostListingWrapper = styled.div`
     align-items: flex-start;
     padding: 24px 24px 16px;
     gap: 24px;
-    width: 1512px;
+    width: 100%;
     height: 165px;
     background: #ffffff;
     box-shadow: inset 0px -1px 0px #f3f4f6;
@@ -112,8 +112,8 @@ export const HostListingWrapper = styled.div`
     align-items: flex-start;
     padding: 40px;
     gap: 24px;
-    width: 1512px;
-    height: 1168px;
+    width: 100%;
+    min-height: 0;
     // border: 1px solid black;
   }
 

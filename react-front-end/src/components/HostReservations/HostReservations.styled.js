@@ -3,11 +3,11 @@ import styled from "styled-components";
 export const HostReservationWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   padding: 0;
   isolation: isolate;
   position: relative;
-  width: 1512px;
+  width: 100vw;
   background: #ffffff;
 
   .filters {
