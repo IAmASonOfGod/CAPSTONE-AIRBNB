@@ -21,7 +21,7 @@ export const UserListingWrapper = styled.div`
   .left {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 40px;
     gap: 24px;
     width: 100%;
@@ -33,7 +33,7 @@ export const UserListingWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1360px;
+    width: min(100%, 1440px);
     height: 44px;
   }
 
@@ -52,7 +52,7 @@ export const UserListingWrapper = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
-    width: 1440px;
+    width: min(100%, 1440px);
     height: 262;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -69,7 +69,7 @@ export const UserListingWrapper = styled.div`
     align-items: flex-start;
     padding: 0px;
     gap: 24px;
-    width: 1400px;
+    width: 100%;
     height: 200px;
   }
 
@@ -79,7 +79,8 @@ export const UserListingWrapper = styled.div`
     align-items: flex-start;
     padding: 5px;
     gap: 16px;
-    width: 1095px;
+    flex: 1;
+    min-width: 0;
     height: 205px;
   }
 
@@ -87,7 +88,7 @@ export const UserListingWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 0px;
-    width: 1080px;
+    width: 100%;
     height: 52px;
   }
 
@@ -107,7 +108,7 @@ export const UserListingWrapper = styled.div`
   }
 
   .divider {
-    width: 40px;
+    width: 100%;
     height: 0px;
     border: 1px solid #e5e7eb;
   }
@@ -183,12 +184,12 @@ export const UserListingWrapper = styled.div`
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    width: 1080px;
+    width: 100%;
     height: 40px;
   }
 
   .content-details-listing {
-    width: 1036px;
+    width: 100%;
     height: 20px;
   }
 
@@ -209,12 +210,12 @@ export const UserListingWrapper = styled.div`
     align-items: flex-end;
     padding: 0px;
     gap: 16px;
-    width: 1080px;
+    width: 100%;
     height: 28px;
   }
 
   .content-details-amenities {
-    width: 1036px;
+    width: 100%;
     height: 20px;
   }
 
@@ -234,7 +235,8 @@ export const UserListingWrapper = styled.div`
     align-items: center;
     padding: 0px;
     gap: 4px;
-    width: 930px;
+    width: auto;
+    flex: 1;
     height: 20px;
   }
 
